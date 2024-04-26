@@ -20,7 +20,7 @@ Documentation and source code for SAEON's Sustainable Ocean modelling Initiative
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-
+The workflow for running the models is currently being re-designed [here](https://github.com/SAEON/somisana-croco), and this new repo will be used for running models operationally on MIMS instratructure. So this repo is fairly stagnant at the moment, but operational models continue to run from this repo on SAEON infrastructure. The new repo only runs the models - nothing website related - so we will need to move the web-related code to a separate web-centric repo, which looks for the latest model outputs on MIMS. Just as soon as we can get a web designer to do this!
 
 # Local development
 
