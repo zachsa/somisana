@@ -30,7 +30,6 @@ lxml = "*"
 pytest = "*"
 scipy = "*"
 psutil = "*"
-copernicus-marine-client = "*"
 copernicusmarine = "*"
 
 [dev-packages]
