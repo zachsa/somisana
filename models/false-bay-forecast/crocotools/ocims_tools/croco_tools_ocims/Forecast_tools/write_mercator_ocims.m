@@ -46,8 +46,12 @@ nc = netcdf(MERCATOR_name_raw);
 lon = nc{'longitude'}(:);
 lat = nc{'latitude'}(:);
 depth = nc{'depth'}(:);
-time = nc{'time'}(:);
-time = time / 24 + datenum(1950,1,1) - datenum(Yorig,1,1);
+time = nc{'time'}(:); % days since origin
+time_origin=ncreadatt(MERCATOR_name_raw,'time','units');
+time_origin=strsplit(time_origin);
+time_origin=char(time_origin(3));
+time_origin=datenum(time_origin);
+time = time + time_origin - datenum(Yorig,1,1);
 
 %
 % Get SSH
@@ -57,11 +61,11 @@ time = time / 24 + datenum(1950,1,1) - datenum(Yorig,1,1);
 vname='zos';
 ncc=nc{vname};
 ssh=ncc(:);
-missval=ncc.FillValue_(:);
-scale_factor=ncc.scale_factor(:);
-add_offset=ncc.add_offset(:);
+missval=ncc._FillValue(:);
+%scale_factor=ncc.scale_factor(:);
+%add_offset=ncc.add_offset(:);
 ssh(ssh<=missval)=NaN;
-ssh = ssh.*scale_factor + add_offset;
+%ssh = ssh.*scale_factor + add_offset;
 %
 %
 % Get U
@@ -70,11 +74,11 @@ ssh = ssh.*scale_factor + add_offset;
 vname='uo';
 ncc=nc{vname};
 u=ncc(:);
-missval=ncc.FillValue_(:);
-scale_factor=ncc.scale_factor(:);
-add_offset=ncc.add_offset(:);
+missval=ncc._FillValue(:);
+%scale_factor=ncc.scale_factor(:);
+%add_offset=ncc.add_offset(:);
 u(u<=missval)=NaN;
-u = u.*scale_factor + add_offset;
+%u = u.*scale_factor + add_offset;
 %
 % Get V
 %
@@ -82,11 +86,11 @@ u = u.*scale_factor + add_offset;
 vname='vo';
 ncc=nc{vname};
 v=ncc(:);
-missval=ncc.FillValue_(:);
-scale_factor=ncc.scale_factor(:);
-add_offset=ncc.add_offset(:);
+missval=ncc._FillValue(:);
+%scale_factor=ncc.scale_factor(:);
+%add_offset=ncc.add_offset(:);
 v(v<=missval)=NaN;
-v = v.*scale_factor + add_offset;
+%v = v.*scale_factor + add_offset;
 %
 % Get TEMP
 %
@@ -94,11 +98,11 @@ v = v.*scale_factor + add_offset;
 vname='thetao';
 ncc=nc{vname};
 temp=ncc(:);
-missval=ncc.FillValue_(:);
-scale_factor=ncc.scale_factor(:);
-add_offset=ncc.add_offset(:);
+missval=ncc._FillValue(:);
+%scale_factor=ncc.scale_factor(:);
+%add_offset=ncc.add_offset(:);
 temp(temp<=missval)=NaN;
-temp = temp.*scale_factor + add_offset;
+%temp = temp.*scale_factor + add_offset;
 %
 % Get SALT
 %
@@ -106,11 +110,11 @@ temp = temp.*scale_factor + add_offset;
 vname='so';
 ncc=nc{vname};
 salt=ncc(:);
-missval=ncc.FillValue_(:);
-scale_factor=ncc.scale_factor(:);
-add_offset=ncc.add_offset(:);
+missval=ncc._FillValue(:);
+%scale_factor=ncc.scale_factor(:);
+%add_offset=ncc.add_offset(:);
 salt(salt<=missval)=NaN;
-salt = salt.*scale_factor + add_offset;
+%salt = salt.*scale_factor + add_offset;
 
 close(nc)
 
