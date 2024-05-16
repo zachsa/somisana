@@ -32,6 +32,7 @@ sed -i '/alias gdalsrsinfo=/d' ~/.bashrc
 sed -i '/alias gdal_translate=/d' ~/.bashrc
 sed -i '/alias gdallocationinfo=/d' ~/.bashrc
 sed -i '/alias gdalmdiminfo=/d' ~/.bashrc
+sed -i '/alias gdal_grid=/d' ~/.bashrc
 
 # Iterate over each line and check if it exists in the .bashrc file
 for line in "${lines[@]}"
