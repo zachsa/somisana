@@ -35,7 +35,7 @@ Ensure that [docker](https://www.docker.com/) is installed on your system, and i
 
 ```sh
 # Download and execute the install script
-wget -qO- https://raw.githubusercontent.com/SAEON/somisana/stable/toolkit/install.sh | bash
+wget -qO- https://raw.githubusercontent.com/zachsa/somisana/stable/toolkit/install.sh | bash
 
 # Reload your terminal configuration
 source ~/.bashrc
